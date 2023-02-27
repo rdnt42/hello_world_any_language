@@ -6,7 +6,7 @@ import com.example.service.TaskService
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 
-@Path("/tasks")
+@Path("/api/tasks")
 class TaskController(
     private val taskService: TaskService
 ) {

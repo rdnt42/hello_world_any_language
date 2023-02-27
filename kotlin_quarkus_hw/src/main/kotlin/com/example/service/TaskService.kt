@@ -2,13 +2,16 @@ package com.example.service
 
 import com.example.entity.Task
 import com.example.request.TaskRequest
+import javax.inject.Inject
 import javax.inject.Singleton
 import javax.persistence.EntityManager
 
 @Singleton
 class TaskService(
-    private val entityManager: EntityManager
 ) {
+
+    @Inject
+    lateinit var entityManager: EntityManager
 
 
     fun create(request: TaskRequest): Task {
