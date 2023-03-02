@@ -2,28 +2,34 @@ package com.example.service
 
 import com.example.entity.Task
 import com.example.request.TaskRequest
+import repository.TaskRepository
 import javax.inject.Inject
 import javax.inject.Singleton
-import javax.persistence.EntityManager
+import javax.transaction.Transactional
 
 @Singleton
 class TaskService(
 ) {
 
     @Inject
-    lateinit var entityManager: EntityManager
+    lateinit var taskRepository: TaskRepository
 
 
+    @Transactional
     fun create(request: TaskRequest): Task {
         val task = Task(dsc = request.dsc)
 
-        entityManager.persist(task)
+        taskRepository.persist(task)
 
         return task
     }
 
     fun get(id: Long): Task {
-        return entityManager.find(Task::class.java, id)
+        return taskRepository.findById(id)
+    }
+
+    fun getAll(): List<Task> {
+        return taskRepository.findAll().list()
     }
 
 }
