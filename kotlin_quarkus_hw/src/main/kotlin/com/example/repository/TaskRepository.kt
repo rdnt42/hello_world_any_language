@@ -1,4 +1,4 @@
-package repository
+package com.example.repository
 
 import com.example.entity.Task
 import io.quarkus.hibernate.orm.panache.PanacheRepository
