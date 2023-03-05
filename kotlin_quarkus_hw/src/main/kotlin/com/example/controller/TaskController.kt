@@ -26,4 +26,11 @@ class TaskController(
         return taskService.getAll()
     }
 
+    @GET
+    @Path("/{id}")
+    fun startTask(@PathParam("id") id: Long) {
+        return taskService.startTask(id)
+    }
+
+
 }

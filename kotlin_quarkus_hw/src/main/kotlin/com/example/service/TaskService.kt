@@ -3,6 +3,9 @@ package com.example.service
 import com.example.entity.Task
 import com.example.repository.TaskRepository
 import com.example.request.TaskRequest
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.jboss.logging.Logger
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -43,8 +46,18 @@ class TaskService(
         if (isFailed) {
             LOG.error("Runtime error for task: $id")
             throw Exception("Runtime error for task: $id")
+        } else {
+            GlobalScope.launch() {
+                startTask(task)
+            }
         }
 
+    }
+
+    private suspend fun startTask(task: Task) {
+        delay(30000) // non-blocking delay for 1 second (default time unit is ms)
+        println("World!") // print after delay
+        taskRepository.delete(task)
     }
 
 }
