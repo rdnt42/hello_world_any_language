@@ -19,3 +19,10 @@ func main() {
 	log.Printf("H2 Database connected")
 	conn.Close()
 }
+
+type Task struct {
+	ID       int64
+	IsStarte bool
+	Dsc      string
+	// CreatedAt  time
+}
